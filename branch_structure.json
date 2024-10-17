@@ -1,0 +1,30 @@
+{
+  "default_branch": "master",
+  "branches": [
+    "chore/tests",
+    "dependabot/github_actions/dev/KSXGitHub/github-actions-deploy-aur-2.7.2",
+    "dev",
+    "feat/soundcloud",
+    "feat/youtube-explode-isolated-service",
+    "master",
+    "website"
+  ],
+  "parent": {
+    "chore/tests": "master",
+    "dependabot/github_actions/dev/KSXGitHub/github-actions-deploy-aur-2.7.2": "master",
+    "dev": "master",
+    "feat/soundcloud": "master",
+    "feat/youtube-explode-isolated-service": "master",
+    "master": null,
+    "website": "master"
+  },
+  "order": [
+    "master",
+    "chore/tests",
+    "dependabot/github_actions/dev/KSXGitHub/github-actions-deploy-aur-2.7.2",
+    "dev",
+    "feat/soundcloud",
+    "feat/youtube-explode-isolated-service",
+    "website"
+  ]
+}
