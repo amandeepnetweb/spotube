@@ -82,3 +82,5 @@ tm.json
 .fvm/
 
 android/build
+config.bat
+node_modules
