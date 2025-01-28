@@ -1,32 +1,23 @@
 {
-  "cmake.configureOnOpen": false,
-  "cSpell.words": [
-    "acousticness",
-    "ambiguate",
-    "Amoled",
-    "Buildless",
-    "danceability",
-    "fuzzywuzzy",
-    "gapless",
-    "instrumentalness",
-    "Mpris",
-    "RGBO",
-    "riverpod",
-    "Scrobblenaut",
-    "shadcn",
-    "skeletonizer",
-    "songlink",
-    "speechiness",
-    "Spotube",
-    "titlebar",
-    "winget"
-  ],
-  "editor.formatOnSave": true,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "pubspec.yaml": "pubspec.lock,analysis_options.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,flutter_launcher_icons*.yaml,flutter_native_splash*.yaml",
-    "README.md": "LICENSE,CODE_OF_CONDUCT.md,CONTRIBUTING.md,SECURITY.md,CONTRIBUTION.md,CHANGELOG.md,PRIVACY_POLICY.md",
-    "*.dart": "${capture}.g.dart,${capture}.freezed.dart"
+  "search.exclude": {
+    "**/.sst": true
   },
-  "dart.flutterSdkPath": ".fvm/versions/3.27.3"
+  "task.allowAutomaticTasks": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "debug.openDebug": "neverOpen",
+  "problems.autoReveal": true,
+  "terminal.integrated.hideOnStartup": "always",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.inheritEnv": false,
+  "jestrunner.configPath": "jest.unit.config.cjs",
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "tasks": {
+    "label": "lint on open",
+    "type": "shell",
+    "command": "npm run lint",
+    "runOn": "folderOpen"
+  }
 }
