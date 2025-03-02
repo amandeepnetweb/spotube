@@ -83,3 +83,5 @@ tm.json
 
 android/build
 android/app/.cxx
+config.bat
+node_modules
