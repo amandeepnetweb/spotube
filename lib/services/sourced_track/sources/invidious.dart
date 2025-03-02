@@ -5,6 +5,8 @@ import 'package:spotify/spotify.dart';
 import 'package:spotube/models/database/database.dart';
 import 'package:spotube/provider/database/database.dart';
 import 'package:spotube/provider/user_preferences/user_preferences_provider.dart';
+import 'package:spotube/services/logger/logger.dart';
+import 'package:spotube/services/song_link/song_link.dart';
 import 'package:spotube/services/sourced_track/enums.dart';
 import 'package:spotube/services/sourced_track/exceptions.dart';
 import 'package:spotube/services/sourced_track/models/source_info.dart';
@@ -179,6 +181,27 @@ class InvidiousSourcedTrack extends SourcedTrack {
   }) async {
     final invidiousClient = ref.read(invidiousProvider);
     final preference = ref.read(userPreferencesProvider);
+
+    final links = await SongLinkService.links(track.id!);
+    final ytLink = links.firstWhereOrNull((link) => link.platform == "youtube");
+
+    if (ytLink != null && track is! SourcedTrack) {
+      try {
+        final videoId = Uri.parse(ytLink.url!).queryParameters["v"]!;
+
+        final manifest = await invidiousClient.videos.get(videoId, local: true);
+
+        return [
+          await toSiblingType(
+            0,
+            YoutubeVideoInfo.fromVideoResponse(manifest, preference.searchMode),
+            invidiousClient,
+          )
+        ];
+      } catch (e, stack) {
+        AppLogger.reportError(e, stack);
+      }
+    }
 
     final query = SourcedTrack.getSearchTerm(track);
 
