@@ -2,46 +2,49 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "spotube",
-      "type": "dart",
+      "name": "Debug SST",
+      "type": "node",
       "request": "launch",
-      "program": "lib/main.dart",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/sst",
+      "runtimeArgs": ["dev", "--increase-timeout"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      // sourceMapRenames helps with the loading spinner when debugging and viewing local variables
+      "sourceMapRenames": false,
+      "env": {
+        "AWS_PROFILE": "flo-ct-flo360"
+      }
     },
     {
-      "name": "spotube (mobile)",
-      "type": "dart",
+      "name": "Debug Tests - Unit",
+      "type": "node",
       "request": "launch",
-      "program": "lib/main.dart",
-      "args": [
-        "--flavor",
-        "dev"
-      ]
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/sst",
+      "runtimeArgs": ["bind", "yarn", "\"jest\"", "\"--watch\"", "\"--config\"", "\"./jest.unit.config.cjs\"", "\"${input:scopeTestsFileName}\""],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "AWS_PROFILE": "flo-ct-flo360"
+      },
     },
     {
-      "name": "spotube (profile)",
-      "type": "dart",
+      "name": "Debug Tests - E2E",
+      "type": "node",
       "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "profile"
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/sst",
+      "runtimeArgs": ["bind", "yarn", "\"vitest\"", "\"--config\"", "\"./vitest.e2e.config.ts\"", "\"${input:scopeTestsFileName}\""],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "AWS_PROFILE": "flo-ct-flo360"
+      },
     },
-    {
-      "name": "spotube (release)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "release"
-    },
-    {
-      "name": "spotube (mobile) (release)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "release",
-      "args": [
-        "--flavor",
-        "dev"
-      ]
-    }
   ],
-  "compounds": []
+  "inputs": [
+    {
+      "id": "scopeTestsFileName",
+      "type": "promptString",
+      "description": "Partial file name to scope test debugging to. ex. arena. Leave blank to run all tests.",
+    }
+  ]
 }
